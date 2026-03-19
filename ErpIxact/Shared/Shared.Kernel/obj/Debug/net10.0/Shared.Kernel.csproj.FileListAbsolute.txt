@@ -1,0 +1,12 @@
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\bin\Debug\net10.0\Shared.Kernel.deps.json
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\bin\Debug\net10.0\Shared.Kernel.dll
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\bin\Debug\net10.0\Shared.Kernel.pdb
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.csproj.AssemblyReference.cache
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.GeneratedMSBuildEditorConfig.editorconfig
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.AssemblyInfoInputs.cache
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.AssemblyInfo.cs
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.csproj.CoreCompileInputs.cache
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.dll
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\refint\Shared.Kernel.dll
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\Shared.Kernel.pdb
+E:\Ixact\clavus\ErpIxact\Shared\Shared.Kernel\obj\Debug\net10.0\ref\Shared.Kernel.dll
