@@ -22,11 +22,12 @@ public class PartnersRepository : IPartnersRepository
     {
         var digits = StringFunctions.ExtractDigits(docNumber);
         return await _context.Partners
-            .FirstOrDefaultAsync(p => EF.Property<string>(p, "DocNumber") == digits, cancellationToken);
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => EF.Property<string>(p, nameof(Partners.DocNumber)) == digits, cancellationToken);
     }
 
     public async Task<List<Partners>> GetAllAsync(CancellationToken cancellationToken = default)
-        => await _context.Partners.ToListAsync(cancellationToken);
+        => await _context.Partners.AsNoTracking().ToListAsync(cancellationToken);
 
     public async Task AddAsync(Partners partner, CancellationToken cancellationToken = default)
     {

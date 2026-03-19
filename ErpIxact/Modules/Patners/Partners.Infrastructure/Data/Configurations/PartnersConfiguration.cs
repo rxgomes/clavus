@@ -13,9 +13,6 @@ public class PartnersConfiguration : IEntityTypeConfiguration<Partners>
 
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id)
-            .IsRequired();
-
         builder.Property(p => p.DocNumber)
             .HasConversion(
                 v => v.Value,
