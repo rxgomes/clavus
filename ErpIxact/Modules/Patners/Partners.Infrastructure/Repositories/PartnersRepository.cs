@@ -23,7 +23,7 @@ public class PartnersRepository : IPartnersRepository
         var digits = StringFunctions.ExtractDigits(docNumber);
         return await _context.Partners
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => EF.Property<string>(p, nameof(Partners.DocNumber)) == digits, cancellationToken);
+            .FirstOrDefaultAsync(p => EF.Property<string>(p, "_docNumber") == digits, cancellationToken);
     }
 
     public async Task<List<Partners>> GetAllAsync(CancellationToken cancellationToken = default)

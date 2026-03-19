@@ -19,7 +19,7 @@ public class GetPartnersQueryHandler : IRequestHandler<GetPartnersQuery, Result<
         var partners = await _repository.GetAllAsync(cancellationToken);
 
         var dtos = partners
-            .Select(p => new PartnerDto(p.Id, p.DocNumber.Value, p.Name, p.Active))
+            .Select(p => new PartnerDto(p.Id, p.DocNumber.Formatted, p.Name, p.Active))
             .ToList();
 
         return Result.Success(dtos);

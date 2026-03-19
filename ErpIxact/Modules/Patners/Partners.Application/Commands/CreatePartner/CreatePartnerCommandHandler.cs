@@ -1,4 +1,5 @@
 using MediatR;
+using Patners.Application.DTOs;
 using Patners.Domain.Messages;
 using Patners.Domain.Repositories;
 using Shared.Kernel;
@@ -6,7 +7,7 @@ using Shared.Kernel.ValueObjects;
 
 namespace Patners.Application.Commands.CreatePartner;
 
-public class CreatePartnerCommandHandler : IRequestHandler<CreatePartnerCommand, Result>
+public class CreatePartnerCommandHandler : IRequestHandler<CreatePartnerCommand, Result<PartnerDto>>
 {
     private readonly IPartnersRepository _repository;
 
@@ -15,12 +16,12 @@ public class CreatePartnerCommandHandler : IRequestHandler<CreatePartnerCommand,
         _repository = repository;
     }
 
-    public async Task<Result> Handle(CreatePartnerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<PartnerDto>> Handle(CreatePartnerCommand request, CancellationToken cancellationToken)
     {
         var existing = await _repository.GetByDocNumberAsync(request.DocNumber, cancellationToken);
         if (existing is not null)
         {
-            return Result.Failure(PartnersMessages.Errors.AlreadyExists);
+            return Result.Conflict<PartnerDto>(PartnersMessages.Errors.AlreadyExists);
         }
 
         var docNumber = new DocNumber(request.DocNumber);
@@ -28,6 +29,8 @@ public class CreatePartnerCommandHandler : IRequestHandler<CreatePartnerCommand,
 
         await _repository.AddAsync(partner, cancellationToken);
 
-        return Result.Success();
+        var dto = new PartnerDto(partner.Id, partner.DocNumber.Formatted, partner.Name, partner.Active);
+
+        return Result.Success(dto);
     }
 }

@@ -85,7 +85,11 @@ public sealed class DocNumber
     public bool IsCpf => Value.Length == 11;
     public bool IsCnpj => Value.Length == 14;
 
-    public override string ToString() => Value;
+    public string Formatted => IsCpf
+        ? $"{Value[..3]}.{Value[3..6]}.{Value[6..9]}-{Value[9..11]}"
+        : $"{Value[..2]}.{Value[2..5]}.{Value[5..8]}/{Value[8..12]}-{Value[12..14]}";
+
+    public override string ToString() => Formatted;
 
     public override bool Equals(object? obj) => obj is DocNumber other && Value == other.Value;
 

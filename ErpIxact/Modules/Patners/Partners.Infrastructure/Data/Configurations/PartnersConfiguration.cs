@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Patners.Domain.Entities;
-using Shared.Kernel.ValueObjects;
 
 namespace Patners.Infrastructure.Data.Configurations;
 
@@ -13,15 +12,17 @@ public class PartnersConfiguration : IEntityTypeConfiguration<Partners>
 
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.DocNumber)
-            .HasConversion(
-                v => v.Value,
-                v => new DocNumber(v))
+        builder.Ignore(p => p.DocNumber);
+
+        builder.Property<string>("_docNumber")
+            .HasField("_docNumber")
+            .UsePropertyAccessMode(PropertyAccessMode.Field)
             .HasColumnName("doc_number")
             .HasMaxLength(14)
             .IsRequired();
 
-        builder.HasIndex(p => p.DocNumber)
+        builder.HasIndex("_docNumber")
+            .HasDatabaseName("ix_partners_doc_number")
             .IsUnique();
 
         builder.Property(p => p.Name)

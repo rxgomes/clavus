@@ -15,3 +15,4 @@ E:\Ixact\clavus\ErpIxact\Modules\Patners\Partners.Application\obj\Debug\net10.0\
 E:\Ixact\clavus\ErpIxact\Modules\Patners\Partners.Application\obj\Debug\net10.0\refint\Partners.Application.dll
 E:\Ixact\clavus\ErpIxact\Modules\Patners\Partners.Application\obj\Debug\net10.0\Partners.Application.pdb
 E:\Ixact\clavus\ErpIxact\Modules\Patners\Partners.Application\obj\Debug\net10.0\ref\Partners.Application.dll
+E:\Ixact\clavus\ErpIxact\Modules\Patners\Partners.Application\obj\Debug\net10.0\Partners.Application.sourcelink.json

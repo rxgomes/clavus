@@ -7,9 +7,16 @@ namespace Patners.Domain.Entities;
 
 public class Partners : BaseEntity
 {
-    public DocNumber DocNumber { get; protected set; } = null!;
+    private string _docNumber = null!;
+
+    public DocNumber DocNumber
+    {
+        get => new DocNumber(_docNumber);
+        protected set => _docNumber = value.Value;
+    }
+
     public string Name { get; protected set; } = null!;
-    
+
     public Partners(DocNumber docNumber, string name)
     {
         if (docNumber is null)
@@ -25,7 +32,6 @@ public class Partners : BaseEntity
         DocNumber = docNumber;
         Name = name;
     }
-  
 
     protected Partners() { }
 }
