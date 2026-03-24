@@ -33,5 +33,22 @@ public class Partners : BaseEntity
         Name = name;
     }
 
+    public void Update(DocNumber docNumber, string name)
+    {
+        if (docNumber is null)
+        {
+            throw new DomainException(PartnersMessages.Errors.DocNumberRequired);
+        }
+
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new DomainException(PartnersMessages.Errors.NameRequired);
+        }
+
+        DocNumber = docNumber;
+        Name = name;
+        SetUpdatedAt();
+    }
+
     protected Partners() { }
 }

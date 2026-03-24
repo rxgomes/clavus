@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Patners.Application.Commands.CreatePartner;
 using Patners.Application.Queries.GetPartnerById;
+using Patners.Application.Queries.GetPartnerByDocNumber;
 using Patners.Application.Queries.GetPartners;
 using Shared.Kernel;
 
@@ -35,6 +36,19 @@ public class PartnersController : ControllerBase
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnerByIdQuery(id), cancellationToken);
+
+        if (!result.IsSuccess)
+        {
+            return ToErrorResponse(result);
+        }
+
+        return Ok(result.Value);
+    }
+
+    [HttpGet("doc/{docNumber}")]
+    public async Task<IActionResult> GetByDocNumber(string docNumber, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetPartnerByDocNumberQuery(docNumber), cancellationToken);
 
         if (!result.IsSuccess)
         {
