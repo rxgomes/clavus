@@ -31,7 +31,7 @@ public class UpdatePartnerCommandHandler : IRequestHandler<UpdatePartnerCommand,
         }
 
         var docNum = new DocNumber(request.DocNum);
-        existing.Update(docNum, request.Name);
+        existing.Update(docNum, request.Name, request.Active);
 
         await _repository.UpdateAsync(existing, cancellationToken);
 

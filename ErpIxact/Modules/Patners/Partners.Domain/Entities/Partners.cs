@@ -33,7 +33,7 @@ public class Partners : BaseEntity
         Name = name;
     }
 
-    public void Update(DocNumber docNumber, string name)
+    public void Update(DocNumber docNumber, string name, bool active)
     {
         if (docNumber is null)
         {
@@ -47,6 +47,7 @@ public class Partners : BaseEntity
 
         DocNumber = docNumber;
         Name = name;
+        Active = active;
         SetUpdatedAt();
     }
 
