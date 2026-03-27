@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Patners.Application.Commands.CreatePartner;
+using Patners.Application.Commands.UpdatePartner;
 using Patners.Application.Queries.GetPartnerById;
 using Patners.Application.Queries.GetPartnerByDocNumber;
 using Patners.Application.Queries.GetPartnerByName;
@@ -20,7 +21,7 @@ public class PartnersController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpGet("partner/get-all")]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnersQuery(), cancellationToken);
@@ -33,7 +34,7 @@ public class PartnersController : ControllerBase
         return Ok(result.Value);
     }
 
-    [HttpGet("get-by-id/{id:guid}")]
+    [HttpGet("partner/get-by-id/{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnerByIdQuery(id), cancellationToken);
@@ -46,7 +47,7 @@ public class PartnersController : ControllerBase
         return Ok(result.Value);
     }
 
-    [HttpGet("get-by-doc/{docNumber}")]
+    [HttpGet("partner/get-by-doc/{docNumber}")]
     public async Task<IActionResult> GetByDocNumber(string docNumber, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnerByDocNumberQuery(docNumber), cancellationToken);
@@ -59,7 +60,7 @@ public class PartnersController : ControllerBase
         return Ok(result.Value);
     }
 
-    [HttpGet("get-by-name/{name}")]
+    [HttpGet("partner/get-by-name/{name}")]
     public async Task<IActionResult> GetByName(string name, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnerByNameQuery(name), cancellationToken);
@@ -72,7 +73,25 @@ public class PartnersController : ControllerBase
         return Ok(result.Value);
     }
 
-    [HttpPost]
+    [HttpPut("partner/update/{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdatePartnerCommand command, CancellationToken cancellationToken)
+    {
+        if (id != command.Id)
+        {
+            return BadRequest(new { error = "O id da rota não corresponde ao id do corpo da requisição." });
+        }
+
+        var result = await _mediator.Send(command, cancellationToken);
+
+        if (!result.IsSuccess)
+        {
+            return ToErrorResponse(result);
+        }
+
+        return Ok(result.Value);
+    }
+
+    [HttpPost("partner/create")]
     public async Task<IActionResult> Create(
         [FromBody] CreatePartnerCommand command,
         CancellationToken cancellationToken)
@@ -91,6 +110,6 @@ public class PartnersController : ControllerBase
     {
         ErrorType.NotFound => NotFound(new { error = result.Error }),
         ErrorType.Conflict => Conflict(new { error = result.Error }),
-        _ => BadRequest(new { error = result.Error })
+        _ => BadRequest(new { error = result.Error }),
     };
 }
