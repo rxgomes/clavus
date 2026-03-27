@@ -25,6 +25,14 @@ public class PartnersRepository : IPartnersRepository
             .AsNoTracking()
             .FirstOrDefaultAsync(p => EF.Property<string>(p, "_docNumber") == digits, cancellationToken);
     }
+    
+    public async Task<List<Partners>> GetByNameAsync(string name, CancellationToken cancellationToken = default)
+    {
+        return await _context.Partners
+            .AsNoTracking()
+            .Where(p => EF.Functions.Like(p.Name, $"%{name}%"))
+            .ToListAsync(cancellationToken);
+    }
 
     public async Task<List<Partners>> GetAllAsync(CancellationToken cancellationToken = default)
         => await _context.Partners.AsNoTracking().ToListAsync(cancellationToken);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Patners.Application.Commands.CreatePartner;
 using Patners.Application.Queries.GetPartnerById;
 using Patners.Application.Queries.GetPartnerByDocNumber;
+using Patners.Application.Queries.GetPartnerByName;
 using Patners.Application.Queries.GetPartners;
 using Shared.Kernel;
 
@@ -32,7 +33,7 @@ public class PartnersController : ControllerBase
         return Ok(result.Value);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("get-by-id/{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnerByIdQuery(id), cancellationToken);
@@ -45,11 +46,24 @@ public class PartnersController : ControllerBase
         return Ok(result.Value);
     }
 
-    [HttpGet("doc/{docNumber}")]
+    [HttpGet("get-by-doc/{docNumber}")]
     public async Task<IActionResult> GetByDocNumber(string docNumber, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetPartnerByDocNumberQuery(docNumber), cancellationToken);
 
+        if (!result.IsSuccess)
+        {
+            return ToErrorResponse(result);
+        }
+
+        return Ok(result.Value);
+    }
+
+    [HttpGet("get-by-name/{name}")]
+    public async Task<IActionResult> GetByName(string name, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetPartnerByNameQuery(name), cancellationToken);
+        
         if (!result.IsSuccess)
         {
             return ToErrorResponse(result);
