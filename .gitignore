@@ -1,2 +1,3 @@
 *.info
 obj/
+**/bin/
