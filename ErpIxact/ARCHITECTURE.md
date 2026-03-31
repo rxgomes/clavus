@@ -386,10 +386,11 @@ public class <NomeModulo>Controller(IMediator mediator) : ControllerBase
 Ao criar um novo módulo, verificar:
 
 - [ ] Pasta `Modules/<NomeModulo>/` criada
-- [ ] Projetos `.Domain`, `.Application`, `.Infrastructure` criados e referenciados na solution
+- [ ] Projetos `.Domain`, `.Application`, `.Infrastructure`, `.Tests` criados e referenciados na solution (importante)
 - [ ] `Shared.Kernel` referenciado em Domain e Application
 - [ ] Entidade(s) criada(s) herdando `BaseEntity`
-- [ ] Interface(s) de repositório definida(s) em Domain
+- [ ] Criar migration de novos Entidades e novos campos
+- [ ] Interface(s) de repositório definida(s) em Domain, toda interface deve  iniciar com I
 - [ ] Mensagens centralizadas em `<Entidade>Messages.cs`
 - [ ] Commands e Queries implementados com handlers
 - [ ] DTOs definidos
