@@ -113,6 +113,11 @@ public class FinancialRecord : BaseEntity
         FinancialRecordStatus status,
         string? digitableLine = null)
     {
+        if (totalInstallment <= 0)
+        {
+            throw new DomainException(FinancialRecordMessages.Errors.TotalInstallmentInvalid);
+        }
+
         var records = new List<FinancialRecord>();
 
         for (var i = 0; i < totalInstallment; i++)
