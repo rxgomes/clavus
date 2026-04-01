@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Modules\BankAccount\BankAccount.Application\BankAccount.Application.csproj" />
+    <ProjectReference Include="..\Modules\CreditCard\CreditCard.Application\CreditCard.Application.csproj" />
+    <ProjectReference Include="..\Modules\FinancialRecord\FinancialRecord.Application\FinancialRecord.Application.csproj" />
+    <ProjectReference Include="..\Modules\FinancialRecord\FinancialRecord.Infrastructure\FinancialRecord.Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\Patners\Partners.Application\Partners.Application.csproj" />
     <ProjectReference Include="..\Modules\Patners\Partners.Infrastructure\Partners.Infrastructure.csproj" />
   </ItemGroup>

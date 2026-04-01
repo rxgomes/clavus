@@ -1,3 +1,5 @@
+using FinancialRecord.Application;
+using FinancialRecord.Infrastructure;
 using Patners.Application;
 using Patners.Infrastructure;
 using Scalar.AspNetCore;
@@ -9,6 +11,9 @@ builder.Services.AddOpenApi();
 
 var connectionString = builder.Configuration.GetConnectionString("Default")
     ?? throw new InvalidOperationException("Connection string 'Default' not found.");
+
+builder.Services.AddFinancialRecordApplication();
+builder.Services.AddFinancialRecordInfrastructure(connectionString);
 
 builder.Services.AddPartnersApplication();
 builder.Services.AddPartnersInfrastructure(connectionString);
