@@ -24,7 +24,7 @@ public class GetUpcomingDueQueryHandler
 
         var dtos = items.Select(r => new FinancialRecordDto(
             r.Id, r.Description, r.Value, r.DueDate,
-            r.TotalInstallment, r.Installment, r.Status, r.Active)).ToList();
+            r.TotalInstallment, r.Installment, r.Status, r.Active, r.DigitableLine, r.CardPurchaseId)).ToList();
 
         return Result.Success(new PagedResultDto<FinancialRecordDto>(dtos, totalCount, request.Page, request.PageSize));
     }

@@ -58,5 +58,5 @@ public class CreateFinancialRecordCommandHandler : IRequestHandler<CreateFinanci
     }
 
     private static FinancialRecordDto ToDto(FinancialRecordEntity record)
-        => new(record.Id, record.Description, record.Value, record.DueDate, record.TotalInstallment, record.Installment, record.Status, record.Active);
+        => new(record.Id, record.Description, record.Value, record.DueDate, record.TotalInstallment, record.Installment, record.Status, record.Active, record.DigitableLine, record.CardPurchaseId);
 }

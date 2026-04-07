@@ -16,6 +16,7 @@ public class FinancialRecord : BaseEntity
     public DateOnly? PaymentDate { get; private set; }
     public decimal? PaidValue { get; private set; }
     public string? DigitableLine { get; private set; }
+    public Guid? CardPurchaseId { get; private set; }
 
     public FinancialRecord(
         string description,
@@ -26,7 +27,8 @@ public class FinancialRecord : BaseEntity
         int installment = 1,
         DateOnly? paymentDate = null,
         decimal? paidValue = null,
-        string? digitableLine = null)
+        string? digitableLine = null,
+        Guid? cardPurchaseId = null)
     {
         if (string.IsNullOrWhiteSpace(description))
         {
@@ -92,6 +94,7 @@ public class FinancialRecord : BaseEntity
         Status = status;
         Installment = installment;
         DigitableLine = digitableLine;
+        CardPurchaseId = cardPurchaseId;
         PaidValue = paidValue;
         PaymentDate = paidValue.HasValue
             ? (paymentDate ?? DateOnly.FromDateTime(DateTime.UtcNow))

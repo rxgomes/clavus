@@ -10,4 +10,6 @@ public record FinancialRecordDto(
     int TotalInstallment,
     int Installment,
     FinancialRecordStatus Status,
-    bool Active);
+    bool Active,
+    string? DigitableLine,
+    Guid? CardPurchaseId);

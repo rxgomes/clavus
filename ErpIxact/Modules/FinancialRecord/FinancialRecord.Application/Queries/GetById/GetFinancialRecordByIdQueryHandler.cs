@@ -35,7 +35,9 @@ public class GetFinancialRecordByIdQueryHandler
             record.TotalInstallment,
             record.Installment,
             record.Status,
-            record.Active);
+            record.Active,
+            record.DigitableLine,
+            record.CardPurchaseId);
 
         return Result.Success(dto);
     }

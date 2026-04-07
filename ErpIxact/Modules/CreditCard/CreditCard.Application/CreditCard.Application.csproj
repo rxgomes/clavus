@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CreditCard.Domain\CreditCard.Domain.csproj" />
     <ProjectReference Include="..\..\..\Shared\Shared.Kernel\Shared.Kernel.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Shared.Contracts\Shared.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

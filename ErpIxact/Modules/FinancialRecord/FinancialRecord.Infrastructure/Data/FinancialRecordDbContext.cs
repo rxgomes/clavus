@@ -21,6 +21,7 @@ public class FinancialRecordDbContext : DbContext
             entity.Property(e => e.Status).IsRequired();
             entity.Property(e => e.Installment).IsRequired();
             entity.Property(e => e.Active).IsRequired();
+            entity.Property(e => e.CardPurchaseId).HasColumnName("card_purchase_id");
         });
     }
 }
